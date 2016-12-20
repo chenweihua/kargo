@@ -17,14 +17,10 @@ KUBELET_HOSTNAME="--hostname-override={{ ansible_hostname }}"
 {% set kubelet_args_base %}--pod-manifest-path={{ kube_manifest_dir }} --pod-infra-container-image={{ pod_infra_image_repo }}:{{ pod_infra_image_tag }}{% endset %}
 
 {# DNS settings for kubelet #}
-{% if dns_setup|bool and skip_dnsmasq|bool %}
+{% if dns_setup|bool %}
 {% set kubelet_args_cluster_dns %}--cluster_dns={{ skydns_server }}{% endset %}
-{% elif dns_setup|bool %}
-{% set kubelet_args_cluster_dns %}--cluster_dns={{ dns_server }}{% endset %}
-{% else %}
-{% set kubelet_args_cluster_dns %}{% endset %}
 {% endif %}
-{% set kubelet_args_dns %}{{ kubelet_args_cluster_dns }} --cluster_domain={{ dns_domain }} --resolv-conf={{ kube_resolv_conf }}{% endset %}
+{% set kubelet_args_dns %}{{ kubelet_args_cluster_dns|default('') }} --cluster_domain={{ dns_domain }} --resolv-conf={{ kube_resolv_conf }}{% endset %}
 
 {# Location of the apiserver #}
 {% set kubelet_args_kubeconfig %}--kubeconfig={{ kube_config_dir}}/node-kubeconfig.yaml --require-kubeconfig{% endset %}

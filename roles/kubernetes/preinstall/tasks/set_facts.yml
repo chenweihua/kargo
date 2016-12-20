@@ -52,5 +52,5 @@
 - set_fact:
     peer_with_calico_rr: "{{ 'calico-rr' in groups and groups['calico-rr']|length > 0 }}"
 
-- include: set_resolv_facts.yml
-  tags: [bootstrap-os, resolvconf, facts]
+#- include: set_resolv_facts.yml
+#  tags: [bootstrap-os, resolvconf, facts]

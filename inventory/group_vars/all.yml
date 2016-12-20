@@ -140,7 +140,7 @@ kube_apiserver_insecure_port: 8080 # (http)
 # Kubernetes won't do this for you (yet).
 
 # Do not install additional dnsmasq
-skip_dnsmasq: false
+skip_dnsmasq: true
 # Upstream dns servers used by dnsmasq
 #upstream_dns_servers:
 #  - 8.8.8.8

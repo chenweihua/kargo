@@ -177,8 +177,8 @@
 - include: etchosts.yml
   tags: [bootstrap-os, etchosts]
 
-- include: resolvconf.yml
-  tags: [bootstrap-os, resolvconf]
+#- include: resolvconf.yml
+#  tags: [bootstrap-os, resolvconf]
   
 - name: Check if we are running inside a Azure VM
   stat: path=/var/lib/waagent/
