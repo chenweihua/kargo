@@ -79,14 +79,7 @@ spec:
         - --cache-size=1000
         - --no-resolv
         - --server=/{{ dns_domain }}/127.0.0.1#10053
-        - --local=/internal./local./lc./{{ private_domains }}
-{% if upstream_dns_servers is defined %}
-{% for srv in upstream_dns_servers %}
-        - --server={{ srv }}
-{% endfor %}
-{% else %}
-        - --server={{ default_resolver }}
-{% endif %}
+        - --local=/internal./local./lc.
 {% if kube_log_level == '4' %}
         - --log-queries
 {% endif %}
